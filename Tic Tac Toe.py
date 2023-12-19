@@ -86,9 +86,11 @@ while game_over == False:
         print("Игрок 2")
         column = int(input("Введите колонку: "))
         line = int(input("Введите строку: "))
+            
     clear() # Убираем ненужное из консоли (для красоты)
     step(column, line, symb)
     win = result() 
+        
 # Проверка конца игры
     if win != "": 
         game_over = True
