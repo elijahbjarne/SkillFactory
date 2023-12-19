@@ -69,10 +69,6 @@ def result():
             win = "O"
     return win
 
-def busy():
-    if 
-
-
 game_over = False
 p1 = True
 
