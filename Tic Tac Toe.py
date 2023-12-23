@@ -4,14 +4,17 @@
 # Добааваление проверки ввода 
 import os
 
-clear = lambda: os.system('clear') # Для красоты, что бы стирать прошлые выводы
+# Для красоты, что бы стирать прошлые выводы
+clear = lambda: os.system('clear') 
+
+# Рисуем пользовательсий интерфейс
 gui = [' ', '1', '2', '3',
         '1', '-', '-', '-',
         '2', '-', '-', '-',
         '3', '-', '-', '-']
 
 # Условия победы
-victory =   [[5, 6, 7],
+victory = [[5, 6, 7],
             [9, 10, 11],
             [13, 14, 15],
             [5, 9, 13],
@@ -120,7 +123,8 @@ def step(column, line, symb):
         else:
             gui[15] = symb
 
-def result(): # Определяем победителя
+# Определяем победителя
+def result():
     win = ""
     for i in victory:
         if gui[i[0]] == "X" and gui[i[1]] == "X" and gui[i[2]] == "X":
@@ -142,14 +146,15 @@ while game_over == False:
     if player1 == True: 
         symb = "X"
         print("Игрок X")
-# Ввод 
-        try:
+# Ввод игрока 1
+
+        try: # проверка ввода первого игрока (колонка)
             column = int(input("Введите колонку: "))
         except Exception: 
             print("Неверно введено значение, попробуйте еще раз")
             column = int(input("Введите колонку: "))
 
-        try:
+        try: # проверка ввода первого игрока (линия)
             line = int(input("Введите строку: "))
         except Exception:
             print("Неверно введено значение, попробуйте еще раз")
@@ -159,14 +164,15 @@ while game_over == False:
     else: 
         symb = "O"
         print("Игрок O")
+# Ввод игрока 2
 
-        try:
+        try: # проверка ввода первого игрока (колонка)
             column = int(input("Введите колонку: "))
         except Exception: 
             print("Неверно введено значение, попробуйте еще раз")
             column = int(input("Введите колонку: "))
 
-        try:
+        try: # проверка ввода второго игрока (линия)
             line = int(input("Введите строку: "))
         except Exception:
             print("Неверно введено значение, попробуйте еще раз")
