@@ -1,6 +1,7 @@
 # Домашнее задание SkillFactory 
 # Игра Крестики-нолики V0.0.2
-# Добаавление ничьей 
+# Добаавление ничьей
+# Добааваление проверки ввода 
 import os
 
 clear = lambda: os.system('clear') # Для красоты, что бы стирать прошлые выводы
@@ -18,6 +19,7 @@ victory =   [[5, 6, 7],
             [7, 11, 15],
             [5, 10, 15],
             [7, 10, 13]]
+check = True
 
 def print_gui(): # Вывод игры в консоль
     print(gui[0], end = " ")
@@ -41,26 +43,80 @@ def print_gui(): # Вывод игры в консоль
     print(gui[15])
 
 def step(column, line, symb): # Ставим символ в игру
+    global check  
+
     if column == 1 and line == 1:
-        gui[5] = symb
+        if gui[5] == "X" or gui[5] == "O":
+            clear() 
+            print("Ячейка занята")
+            check = False
+        else:
+            gui[5] = symb
+            
+
     if column == 1 and line == 2:
-        gui[9] = symb
+        if gui[9] == "X" or gui[9] == "O":
+            clear() 
+            print("Ячейка занята")
+            check = False
+        else:
+            gui[9] = symb
+
     if column == 1 and line == 3:
-        gui[13] = symb
+            if gui[13] == "X" or gui[13] == "O":
+                clear() 
+                print("Ячейка занята") 
+                check = False
+            else:
+                gui[13] = symb
 
     if column == 2 and line == 1:
-        gui[6] = symb
+        if gui[6] == "X" or gui[6] == "O":
+            clear() 
+            print("Ячейка занята")
+            check = False
+        else:
+            gui[6] = symb
+
     if column == 2 and line == 2:
-        gui[10] = symb
+        if gui[10] == "X" or gui[10] == "O":
+            clear() 
+            print("Ячейка занята")
+            check = False
+        else:
+            gui[10] = symb
+
     if column == 2 and line == 3:
-        gui[14] = symb
+        if gui[14] == "X" or gui[14] == "O":
+            clear() 
+            print("Ячейка занята")
+            check = False
+        else:
+            gui[14] = symb
 
     if column == 3 and line == 1:
-        gui[7] = symb
+        if gui[7] == "X" or gui[7] == "O":
+            clear() 
+            print("Ячейка занята")
+            check = False
+        else:
+            gui[7] = symb
+  
     if column == 3 and line == 2:
-        gui[11] = symb
+        if gui[11] == "X" or gui[11] == "O":
+            clear() 
+            print("Ячейка занята")
+            check = False
+        else:
+            gui[11] = symb
+  
     if column == 3 and line == 3:
-        gui[15] = symb
+        if gui[15] == "X" or gui[15] == "O":
+            clear() 
+            print("Ячейка занята")
+            check = False
+        else:
+            gui[15] = symb
 
 def result(): # Определяем победителя
     win = ""
@@ -69,19 +125,17 @@ def result(): # Определяем победителя
             win = "X"
         if gui[i[0]] == "O" and gui[i[1]] == "O" and gui[i[2]] == "O":
             win = "O"
-    
-    
-    
     return win
 
 game_over = False
-p1 = True
+player1 = True
 step_count = 0
 
 # Основная программа
 while game_over == False: 
     print_gui()
-    if p1 == True: # Ход первого игрока
+    check = True
+    if player1 == True: # Ход первого игрока
         symb = "X"
         print("Игрок X")
         column = int(input("Введите колонку: "))
@@ -94,7 +148,7 @@ while game_over == False:
    
     step_count += 1
 
-    if count == 9: # Проверка ничьей
+    if step_count == 9: # Проверка ничьей
         win = "дружба! :)"
         clear() 
     else:
@@ -107,7 +161,14 @@ while game_over == False:
         game_over = True
     else:
         game_over = False
-    p1 = not(p1) 
+
+    if check == True:
+        player1 = not(player1) 
+        print(check)
+    if check == False:
+        player1 = player1
+        step_count -= 1
+        print(check)
 
 print_gui()
 print("Победил(а)", win)
