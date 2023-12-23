@@ -21,7 +21,8 @@ victory =   [[5, 6, 7],
             [7, 10, 13]]
 check = True
 
-def print_gui(): # Вывод игры в консоль
+# Вывод игры в консоль
+def print_gui():
     print(gui[0], end = " ")
     print(gui[1], end = " ")
     print(gui[2], end = " ")
@@ -42,7 +43,8 @@ def print_gui(): # Вывод игры в консоль
     print(gui[14], end = " ")
     print(gui[15])
 
-def step(column, line, symb): # Ставим символ в игру
+# Ставим символ в игру и проверяем не занята ли ячейка
+def step(column, line, symb):
     global check  
 
     if column == 1 and line == 1:
@@ -127,6 +129,7 @@ def result(): # Определяем победителя
             win = "O"
     return win
 
+# Задаем необходимые переменные 
 game_over = False
 player1 = True
 step_count = 0
@@ -135,36 +138,62 @@ step_count = 0
 while game_over == False: 
     print_gui()
     check = True
-    if player1 == True: # Ход первого игрока
+# Ход первого игрока
+    if player1 == True: 
         symb = "X"
         print("Игрок X")
-        column = int(input("Введите колонку: "))
-        line = int(input("Введите строку: "))
-    else: # Ход второго игрока
+# Ввод 
+        try:
+            column = int(input("Введите колонку: "))
+        except Exception: 
+            print("Неверно введено значение, попробуйте еще раз")
+            column = int(input("Введите колонку: "))
+
+        try:
+            line = int(input("Введите строку: "))
+        except Exception:
+            print("Неверно введено значение, попробуйте еще раз")
+            line = int(input("Введите строку: "))
+
+# Ход второго игрока
+    else: 
         symb = "O"
         print("Игрок O")
-        column = int(input("Введите колонку: "))
-        line = int(input("Введите строку: "))
+
+        try:
+            column = int(input("Введите колонку: "))
+        except Exception: 
+            print("Неверно введено значение, попробуйте еще раз")
+            column = int(input("Введите колонку: "))
+
+        try:
+            line = int(input("Введите строку: "))
+        except Exception:
+            print("Неверно введено значение, попробуйте еще раз")
+            line = int(input("Введите строку: "))
    
     step_count += 1
 
-    if step_count == 9: # Проверка ничьей
+# Проверка ничьей
+    if step_count == 9:
         win = "дружба! :)"
         clear() 
     else:
-        clear() # Убираем ненужное из консоли (для красоты)
+        clear()
         step(column, line, symb)
         win = result() 
-        
+
 # Проверка конца игры
     if win != "": 
         game_over = True
     else:
         game_over = False
 
+# Делаем так, что бы нельзя было ставить символ в одно место 
     if check == True:
         player1 = not(player1) 
         print(check)
+
     if check == False:
         player1 = player1
         step_count -= 1
