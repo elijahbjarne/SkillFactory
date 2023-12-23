@@ -1,15 +1,16 @@
 # Домашнее задание SkillFactory 
-# Игра Крестики-нолики V0.0.1 
+# Игра Крестики-нолики V0.0.2
+# Добаавление ничьей 
 import os
 
-clear = lambda: os.system('cls') # Для красоты, что бы стирать прошлые выводы
+clear = lambda: os.system('clear') # Для красоты, что бы стирать прошлые выводы
 gui = [' ', '1', '2', '3',
         '1', '-', '-', '-',
         '2', '-', '-', '-',
         '3', '-', '-', '-']
 
 # Условия победы
-victory = [ [5, 6, 7],
+victory =   [[5, 6, 7],
             [9, 10, 11],
             [13, 14, 15],
             [5, 9, 13],
@@ -68,28 +69,38 @@ def result(): # Определяем победителя
             win = "X"
         if gui[i[0]] == "O" and gui[i[1]] == "O" and gui[i[2]] == "O":
             win = "O"
+    
+    
+    
     return win
 
 game_over = False
 p1 = True
+step_count = 0
 
 # Основная программа
 while game_over == False: 
     print_gui()
     if p1 == True: # Ход первого игрока
         symb = "X"
-        print("Игрок 1")
+        print("Игрок X")
         column = int(input("Введите колонку: "))
         line = int(input("Введите строку: "))
     else: # Ход второго игрока
         symb = "O"
-        print("Игрок 2")
+        print("Игрок O")
         column = int(input("Введите колонку: "))
         line = int(input("Введите строку: "))
-            
-    clear() # Убираем ненужное из консоли (для красоты)
-    step(column, line, symb)
-    win = result() 
+    
+    step_count += 1
+
+    if count == 9: # Проверка ничьей
+        win = "дружба! :)"
+        clear() 
+    else:
+        clear() # Убираем ненужное из консоли (для красоты)
+        step(column, line, symb)
+        win = result() 
         
 # Проверка конца игры
     if win != "": 
@@ -99,4 +110,4 @@ while game_over == False:
     p1 = not(p1) 
 
 print_gui()
-print("победил", win)
+print("Победил(а)", win)
