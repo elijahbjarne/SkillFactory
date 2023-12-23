@@ -91,7 +91,7 @@ while game_over == False:
         print("Игрок O")
         column = int(input("Введите колонку: "))
         line = int(input("Введите строку: "))
-    
+   
     step_count += 1
 
     if count == 9: # Проверка ничьей
