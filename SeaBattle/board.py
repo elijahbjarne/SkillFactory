@@ -22,7 +22,6 @@ class Board:
         return Cell(random.randint(0, self.size - 1), random.randint(0, self.size - 1))
 
     # Печать поля
-    #def __repr__(self):
     def __str__(self):
         header = " # | " + " | ".join(self.dict()) + " |"
         line = "-" * (len(header) - 1)
