@@ -193,7 +193,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_UNIQUE_EMAIL = True
 
 # тема письма для подтверждения регистрации
-ACCOUNT_EMAIL_SUBJECT_PREFIX = "From Bulat with regards. "
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "From Admin with regards. "
 # поле username необязательно
 ACCOUNT_USERNAME_REQUIRED = False
 
